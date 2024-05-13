@@ -4,7 +4,7 @@ function App() {
 
   return (
     <>
-      <div>react</div>
+      <div>명함 인식 어플 만들꺼임</div>
     </>
   )
 }
