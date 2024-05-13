@@ -12,3 +12,15 @@ html, body{
 body * {
     font-family: "NanumPenScript";
 }
+
+
+#root{
+    background-color: white;
+    margin: 0 auto;
+    height: 90vh;
+    box-shadow: rgb(100,100,100,0.2) 0px 0px 29px 0px;
+    padding: 0px 20px;
+    max-width: 80vw;
+    min-width: 60vw;
+    min-height: 100vh;
+}

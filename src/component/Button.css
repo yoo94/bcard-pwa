@@ -1,0 +1,32 @@
+.Button {
+    background-color: rgb(236,236,236);
+    cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    font-size: 18px;
+    white-space: nowrap;
+}
+
+.Button_right {
+    width:  100%;
+}
+
+.Button_footer {
+    position: fixed;
+    bottom: 0;
+    margin: auto;
+    max-width: 80vw;
+    min-width: 60vw;
+    min-height: footer;
+  }
+
+.Button_GREEN {
+    background-color: rgb(100,201,100);
+    color: white;
+}
+
+.Button_RED {
+    background-color: rgb(253,86,95);
+    color: white;
+}
