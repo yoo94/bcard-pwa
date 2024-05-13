@@ -1,6 +1,12 @@
+import Header from "../component/Header"
+
 const Home =()=>{
     return(
-        <div>Home</div>
+        <div>
+            <Header 
+                title={"Get  Business Card!"}
+            />
+        </div>
     )
 }
 
