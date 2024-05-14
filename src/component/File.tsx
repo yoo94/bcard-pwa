@@ -6,7 +6,7 @@ const File = () => {
   }
   const fileInputRef = useRef<HTMLInputElement>(null);
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
-  const [postImg, setPostImg] = useState<EditorDataType>({ file: null });
+  // const [postImg, setPostImg] = useState<EditorDataType>({ file: null });
   const [previewImg, setPreviewImg] = useState<string>(''); // Changed to string
   useEffect(()=>{
     setPreviewImg("../../public/images/1.gif")
@@ -14,7 +14,7 @@ const File = () => {
   function uploadFile(e: React.ChangeEvent<HTMLInputElement>) {
     const fileArr = e.target.files;
     if (fileArr && fileArr.length > 0) {
-      setPostImg({ file: URL.createObjectURL(fileArr[0]) }); // Store the file URL
+      // setPostImg({ file: URL.createObjectURL(fileArr[0]) }); // Store the file URL
       
       const fileRead = new FileReader();
       fileRead.onload = function() {
