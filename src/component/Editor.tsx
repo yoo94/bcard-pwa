@@ -1,15 +1,10 @@
 import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import './Editor.css'
-import { useRef } from 'react';
-
+import File from './File'
 const Editor = () => {
   const nav = useNavigate();
-  const fileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleFileSectionClick = () => {
-    fileInputRef.current?.click();
-  };
   return (
     <div className="Editor">
       <h2>명함 등록하기</h2>
@@ -60,14 +55,7 @@ const Editor = () => {
           <span></span>
         </div>
       </section>
-      <section className="file_section" onClick={handleFileSectionClick}>
-        <div>
-          <label htmlFor="file">+ 명함첨부</label>
-          <div className="hidden">
-            <input ref={fileInputRef} type="file" multiple accept="image/*" onChange={() => { }} />
-          </div>
-        </div>
-      </section>
+      <File />
       <footer className='button_section'>
         <Button text={'취소하기'} type='RED' location={'footer_harf'} onclick={() => { nav(-1) }} />
         <Button text={'저장하기'} type='GREEN' location={'footer_harf'} onclick={() => { }} />
