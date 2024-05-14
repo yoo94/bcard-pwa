@@ -9,7 +9,7 @@ const File = () => {
   // const [postImg, setPostImg] = useState<EditorDataType>({ file: null });
   const [previewImg, setPreviewImg] = useState<string>(''); // Changed to string
   useEffect(()=>{
-    setPreviewImg("../../public/images/1.gif")
+    setPreviewImg("./images/1.gif")
   },[])
   function uploadFile(e: React.ChangeEvent<HTMLInputElement>) {
     const fileArr = e.target.files;
