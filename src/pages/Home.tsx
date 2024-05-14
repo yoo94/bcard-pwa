@@ -1,16 +1,16 @@
 import Header from "../component/Header"
-import Button from "../component/Button";
 import BCardList from "../component/BCardList";
-const Home =()=>{
-    return(
+import Footer from "../component/Footer"
+const Home = () => {
+    return (
         <div>
-            <Header 
+            <Header
                 title={"Get  Business Card!"}
             />
-            <BCardList/>
-            <Button text="+" onclick={()=>{}} location="footer"/>
+            <BCardList />
+            <Footer />
         </div>
     )
 }
 
-export  default Home;
+export default Home;

@@ -1,18 +1,19 @@
-
 .BCardList {
     width: 100%;
     display: flex;
     flex-direction: column;
     gap: 20px;
 }
-.BCardList > input {
+
+.BCardList>input {
     width: 100%;
     border: none;
-    border-bottom: 1px solid rgb(220,220,220);
+    border-bottom: 1px solid rgb(220, 220, 220);
     padding: 15px, 0px;
+    font-size: 25px;
 }
 
-.BCardList > input:focus {
+.BCardList>input:focus {
     outline: none;
-    border-bottom: 1px solid rgb(27,147,255)
+    border-bottom: 1px solid rgb(27, 147, 255)
 }
