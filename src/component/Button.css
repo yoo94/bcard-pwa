@@ -11,9 +11,18 @@
 
 .Button_footer {
     margin: auto;
-    width: 100%;
+    font-size: 32px;
+    position: fixed;
+    bottom: 0;
     height: 80px;
-    min-height: footer;
+    width: 100%;
+    background-color: #ddd;
+}
+
+.Button_footer_harf {
+    width: 50%;
+    height: 80px;
+    font-size: 32px;
 }
 
 .Button_GREEN {

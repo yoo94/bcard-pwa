@@ -1,0 +1,79 @@
+.Editor {
+  width: 100%;
+  font-size: 22px;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.Editor div {
+  position: relative;
+  margin-top: 15%;
+}
+
+.Editor input {
+  font-size: 20px;
+  color: #222222;
+  width: 300px;
+  border: none;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  position: relative;
+  background: none;
+  z-index: 5;
+}
+
+.Editor input::placeholder {
+  color: #050505;
+}
+
+.Editor input:focus {
+  outline: none;
+}
+
+.Editor span {
+  display: block;
+  position: absolute;
+  bottom: 0;
+  left: 0%;
+  background-color: #666;
+  width: 0;
+  height: 2px;
+  border-radius: 2px;
+  transition: 0.5s;
+}
+
+.Editor label {
+  position: absolute;
+  color: #0c0909;
+  left: 5%;
+  font-size: 25px;
+  transition: all .2s;
+}
+
+.Editor input:focus~label,
+input:valid~label {
+  bottom: 40px;
+  color: #110f0f;
+  font-weight: bold;
+}
+
+.Editor input:focus~span,
+input:valid~span {
+  width: 100%;
+}
+
+.Editor .button_section {
+  position: fixed;
+  bottom: 0;
+}
+
+.Editor .hidden {
+  visibility: hidden;
+}
+
+.Editor .file_section {
+  margin-top: 10%;
+  border: 1px dashed black;
+  height: 30vh;
+}

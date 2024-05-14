@@ -15,6 +15,7 @@ const BcardItem: React.FC<BCardListObj> = (item) => {
         <div className="name">{item.name}</div>
         <div className="hpNum">{item.hpNum}</div>
         <div className="company">{item.company}</div>
+        <div className="email">{item.email}</div>
       </div>
     </div>
   )

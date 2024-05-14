@@ -1,7 +1,12 @@
-const New =()=>{
-    return(
-        <div>New</div>
+import Editor from "../component/Editor";
+
+
+const New = () => {
+    return (
+        <div>
+            <Editor />
+        </div>
     )
 }
 
-export  default New;
+export default New;

@@ -1,12 +1,13 @@
 import Header from "../component/Header"
 import BCardList from "../component/BCardList";
-import Footer from "../component/Footer"
+import Footer from "../component/Footer";
 
 export interface BCardListObj {
     id: number,
     name: string,
     hpNum: string,
-    company: string
+    company: string,
+    email: string
 }
 
 
@@ -17,19 +18,22 @@ const Home = () => {
             id: 0,
             name: "유재석",
             hpNum: "010-2222-2222",
-            company: "유니포스트"
+            company: "유니포스트",
+            email: "www@naver.com"
         },
         {
             id: 1,
             name: "이인식",
             hpNum: "010-3242-3333",
-            company: "유니포스트"
+            company: "유니포스트",
+            email: "www@naver.com"
         },
         {
             id: 2,
             name: "조연재",
             hpNum: "010-4444-3242",
-            company: "유니포스트"
+            company: "유니포스트",
+            email: "www@naver.com"
         },
 
     ]

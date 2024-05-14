@@ -6,7 +6,8 @@ export interface BCardListObj {
     id: number,
     name: string,
     hpNum: string,
-    company: string
+    company: string,
+    email: string
 }
 
 interface BCardListProps {
