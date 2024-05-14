@@ -1,4 +1,5 @@
 import "./BCardList.css"
+import BcardItem from "./BcardItem";
 
 export interface BCardListObj {
     id: number,
@@ -14,13 +15,9 @@ interface BCardListProps {
 const BCardList: React.FC<BCardListProps> = ({ data }) => {
     return (
         <div>
-            {data.map(card => (
-                <div className={"BCardList"} key={card.id}>
-                    <p>Name: {card.name}</p>
-                    <p>Phone Number: {card.hpNum}</p>
-                    <p>Company: {card.company}</p>
-                </div>
-            ))}
+            {data.map((item) => {
+                return <BcardItem key={item.id} {...item} />
+            })}
         </div>
     );
 }
