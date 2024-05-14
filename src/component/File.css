@@ -1,0 +1,17 @@
+
+.File .hidden {
+  visibility: hidden;
+}
+
+.File .file_section {
+  margin-top: 10%;
+  border: 1px dashed black;
+  height: 30vh;
+  width: 85vw;
+}
+
+.File .preview{
+  height: 30vh;
+  width: 85vw;
+
+}

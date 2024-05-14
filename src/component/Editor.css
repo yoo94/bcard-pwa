@@ -67,13 +67,3 @@ input:valid~span {
   position: fixed;
   bottom: 0;
 }
-
-.Editor .hidden {
-  visibility: hidden;
-}
-
-.Editor .file_section {
-  margin-top: 10%;
-  border: 1px dashed black;
-  height: 30vh;
-}
