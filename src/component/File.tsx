@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import "./File.css"
 const File = () => {
   interface EditorDataType {
@@ -8,7 +8,9 @@ const File = () => {
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   const [postImg, setPostImg] = useState<EditorDataType>({ file: null });
   const [previewImg, setPreviewImg] = useState<string>(''); // Changed to string
-  
+  useEffect(()=>{
+    setPreviewImg("../../public/images/1.gif")
+  },[])
   function uploadFile(e: React.ChangeEvent<HTMLInputElement>) {
     const fileArr = e.target.files;
     if (fileArr && fileArr.length > 0) {
@@ -33,9 +35,9 @@ const File = () => {
   return (
     <div className='File'>
       <section className="file_section" onClick={handleFileSectionClick}>
-        <img className="preview" src={previewImg} />
+        <img className="preview" alt='' src={previewImg} />
         <div>
-          <label htmlFor="file">+ 명함첨부</label> {/* Added id for file input */}
+          <label htmlFor="file"></label> {/* Added id for file input */}
           <div className="hidden">
             <input id="file" ref={fileInputRef} type="file" multiple accept="image/*" onChange={uploadFile} />
           </div>
