@@ -1,4 +1,4 @@
-import { useRef, useState } from 'react';
+import { useRef } from 'react';
 
 const File = () => {
   const fileInputRef = useRef<HTMLInputElement>(null);
@@ -15,7 +15,7 @@ const File = () => {
         <div>
           <label htmlFor="file">+ 명함첨부</label>
           <div className="hidden">
-            <input ref={fileInputRef} type="file" multiple accept="image/*" onChange={handleFileUpload} />
+            <input ref={fileInputRef} type="file" multiple accept="image/*" onChange={() => { }} />
           </div>
         </div>
       </section>
