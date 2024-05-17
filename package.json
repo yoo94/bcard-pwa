@@ -10,12 +10,16 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "mongodb": "^6.6.2",
+    "mongoose": "^8.3.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
     "tesseract.js": "^5.1.0"
   },
   "devDependencies": {
+    "@types/mongoose": "^5.11.97",
+    "@types/node": "^20.12.12",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@typescript-eslint/eslint-plugin": "^7.2.0",
@@ -24,7 +28,9 @@
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.6",
-    "typescript": "^5.2.2",
+    "express": "^4.19.2",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5",
     "vite": "^5.2.0"
   }
 }

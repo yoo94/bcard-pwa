@@ -1,14 +1,8 @@
 import { useState } from "react";
 import "./BCardList.css"
 import BcardItem from "./BcardItem";
+import { BCardListObj } from "../App";
 
-export interface BCardListObj {
-    id: number,
-    name: string,
-    hpNum: string,
-    company: string,
-    email: string
-}
 
 interface BCardListProps {
     data: BCardListObj[];

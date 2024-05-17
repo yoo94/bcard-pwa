@@ -1,0 +1,70 @@
+.Viewer {
+    width: 100%;
+    font-size: 22px;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  
+  .Viewer div {
+    position: relative;
+    margin-top: 15%;
+  }
+  
+  .Viewer input {
+    font-size: 20px;
+    color: #222222;
+    width: 300px;
+    border: none;
+    padding-bottom: 10px;
+    padding-left: 10px;
+    position: relative;
+    background: none;
+    z-index: 5;
+  }
+  
+  .Viewer input::placeholder {
+    color: #050505;
+  }
+  
+  .Viewer input:focus {
+    outline: none;
+  }
+  
+  .Viewer span {
+    display: block;
+    position: absolute;
+    bottom: 0;
+    left: 0%;
+    background-color: #666;
+    width: 0;
+    height: 2px;
+    border-radius: 2px;
+    transition: 0.5s;
+  }
+  
+  .Viewer label {
+    position: absolute;
+    color: #0c0909;
+    left: 5%;
+    font-size: 25px;
+    transition: all .2s;
+  }
+  
+  .Viewer input:focus~label,
+  input:valid~label {
+    bottom: 40px;
+    color: #110f0f;
+    font-weight: bold;
+  }
+  
+  .Viewer input:focus~span,
+  input:valid~span {
+    width: 100%;
+  }
+  
+  .Viewer .button_section {
+    position: fixed;
+    bottom: 0;
+  }
+  

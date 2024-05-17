@@ -2,19 +2,56 @@ import { useNavigate } from 'react-router-dom';
 import Button from './Button';
 import './Editor.css'
 import File from './File'
-const Editor = () => {
+import { InputType } from '../pages/New';
+import { useEffect, useState } from 'react';
+
+interface EditorProps {
+  onsubmit: (input: InputType) => void;
+  initData?: InputType;
+}
+
+const Editor: React.FC<EditorProps>  = ({onsubmit,initData}) => {
   const nav = useNavigate();
+  const [input,setInput] = useState<InputType>({
+    name: "",
+    hpNum:"",
+    company: "",
+    email: "",
+    image:""
+  });
+  
+  const onChangeInput =(e: React.ChangeEvent<HTMLInputElement>)=>{
+    const name = e.target.name;
+    const value = e.target.value;
+    setInput({
+        ...input,
+        [name] :value
+    })
+    
+  }
+  const onclickSubmit = ()=>{
+    onsubmit(input);
+  } 
+
+  useEffect(()=>{
+    if(initData){
+        setInput(
+            {
+                ...initData,
+            }
+        ) 
+    }
+  },[initData])
 
   return (
     <div className="Editor">
-      <h2>명함 등록하기</h2>
       <section className='name_section'>
         <div>
           <input
             name="name"
             type='text'
-            // value={""}
-            onChange={() => { }} />
+            value={input.name}
+            onChange={onChangeInput} />
           <label>Name</label>
           <span></span>
         </div>
@@ -24,8 +61,8 @@ const Editor = () => {
           <input
             name="hpNum"
             type='text'
-            // value={""}
-            onChange={() => { }}
+            value={input.hpNum}
+            onChange={onChangeInput}
           />
           <label>핸드폰 번호</label>
           <span></span>
@@ -36,8 +73,8 @@ const Editor = () => {
           <input
             name="email"
             type='text'
-            // value={""}
-            onChange={() => { }}
+            value={input.email}
+            onChange={onChangeInput}
           />
           <label>이메일</label>
           <span></span>
@@ -48,17 +85,17 @@ const Editor = () => {
           <input
             name="company"
             type='text'
-            // value={""}
-            onChange={() => { }}
+            value={input.company}
+            onChange={onChangeInput}
           />
           <label>회사</label>
           <span></span>
         </div>
       </section>
-      <File />
+      <File setImage = {setInput} />
       <footer className='button_section'>
         <Button text={'취소하기'} type='RED' location={'footer_harf'} onclick={() => { nav(-1) }} />
-        <Button text={'저장하기'} type='GREEN' location={'footer_harf'} onclick={() => { }} />
+        <Button text={'저장하기'} type='GREEN' location={'footer_harf'} onclick={onclickSubmit} />
       </footer>
     </div>
   )
