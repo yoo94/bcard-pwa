@@ -17,16 +17,20 @@ const File: React.FC<FileProps> = ({ setImage }) => {
 
   useEffect(() => {
     const loadImage = async () => {
-      const response = await fetch("./images/1.gif");
-      const blob = await response.blob();
-      const reader = new FileReader();
-      reader.readAsDataURL(blob); // Read the file as data URL
-      reader.onloadend = () => {
-        const base64String = reader.result?.toString().split(',')[1]; // Get base64 string
-        if (base64String) {
-          setPreviewImg(base64String);
-        }
-      };
+      try {
+        const response = await fetch("./images/1.gif");
+        const blob = await response.blob();
+        const reader = new FileReader();
+        reader.readAsDataURL(blob); // Read the file as data URL
+        reader.onloadend = () => {
+          const base64String = reader.result?.toString().split(',')[1]; // Get base64 string
+          if (base64String) {
+            setPreviewImg(base64String);
+          }
+        };
+      } catch (error) {
+        console.error("이미지를 불러오는 중 오류 발생:", error);
+      }
     };
     loadImage();
   }, []);
@@ -57,7 +61,7 @@ const File: React.FC<FileProps> = ({ setImage }) => {
   return (
     <div className='File'>
       <section className="file_section" onClick={handleFileSectionClick}>
-        <img className="preview" alt='' src={"data:image/gif;base64,"+previewImg} />
+        <img className="preview" alt='' src={"data:image/gif;base64," + previewImg} />
         <div>
           <label htmlFor="file"></label> {/* Added id for file input */}
           <div className="hidden">
@@ -66,7 +70,7 @@ const File: React.FC<FileProps> = ({ setImage }) => {
         </div>
       </section>
     </div>
-  )
+  );
 }
 
 export default File;
