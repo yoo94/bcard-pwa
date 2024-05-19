@@ -27,6 +27,7 @@ const New = () => {
             input.email,
             input.image
         );
+        nav(-1);
         nav('/',{replace:true})
     }
     return (
