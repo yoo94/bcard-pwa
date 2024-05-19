@@ -23,7 +23,8 @@
   font-size: 20px;
 }
 
-.BcardItem .info_section .image img{
-  width: 100%;
+.BcardItem .info_section img{
+  margin: 0 10%;
+  width: 80%;
   height: 17vh;
 }

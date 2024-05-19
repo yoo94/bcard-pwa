@@ -20,6 +20,7 @@ const New = () => {
             alert('이름과 번호는 필수 입니다.');
             return;
         }
+        alert('r3')
         onCreate(
             input.name,
             input.hpNum,
