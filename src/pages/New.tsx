@@ -2,7 +2,7 @@ import { useContext } from "react";
 import { BcardDispatchContext } from "../App";
 import Editor from "../component/Editor";
 import Header from "../component/Header";
-// import { useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export interface InputType {
     name: string;
@@ -14,12 +14,13 @@ export interface InputType {
 
 const New = () => {
     const { onCreate } = useContext(BcardDispatchContext);
-    // const nav = useNavigate();
+    const nav = useNavigate();
     const  onsubmit=(input:InputType)=>{
         if(!input.name||!input.hpNum){
             alert('이름과 번호는 필수 입니다.');
             return;
         }
+        if(!input.image) alert('??')
         onCreate(
             input.name,
             input.hpNum,
@@ -27,7 +28,7 @@ const New = () => {
             input.email,
             input.image
         );
-        // nav('/')
+        nav('/')
     }
     return (
         <div>
