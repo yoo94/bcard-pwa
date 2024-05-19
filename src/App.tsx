@@ -22,6 +22,7 @@ function reducer(state: BCardListObj[], action: any) {
     case "INIT": 
       return action.data;
     case "CREATE":
+      alert('r1')
       nextState = [action.data, ...state];
       break;
     case "UPDATE":
@@ -37,7 +38,9 @@ function reducer(state: BCardListObj[], action: any) {
     default:
       return state;
   }
+  alert('r2')
   localStorage.setItem("Bcard", JSON.stringify(nextState));
+  alert('r3')
   return nextState;
 }
 
