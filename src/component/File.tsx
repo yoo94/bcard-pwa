@@ -1,5 +1,5 @@
 import { useEffect, useRef, useState } from 'react';
-import "./File.css"
+import "./File.css";
 
 interface FileProps {
   setImage: React.Dispatch<React.SetStateAction<{
@@ -13,17 +13,15 @@ interface FileProps {
 
 const File: React.FC<FileProps> = ({ setImage }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
-  const [previewImg, setPreviewImg] = useState<string>(''); // Changed to string
+  const [previewImg, setPreviewImg] = useState<string>(''); 
 
-  useEffect(()=>{
-    setPreviewImg("./images/1.gif")
-  },[])
-  
+  useEffect(() => {
+    setPreviewImg("/images/1.gif");
+  }, []);
+
   function uploadFile(e: React.ChangeEvent<HTMLInputElement>) {
     const fileArr = e.target.files;
     if (fileArr && fileArr.length > 0) {
-      // setPostImg({ file: URL.createObjectURL(fileArr[0]) }); // Store the file URL
-      
       const fileRead = new FileReader();
       fileRead.onload = function() {
         const result = fileRead.result;
@@ -35,9 +33,9 @@ const File: React.FC<FileProps> = ({ setImage }) => {
           }));
         }
       };
+      fileRead.readAsDataURL(fileArr[0]); // 파일을 data URL 형식으로 읽기
     }
   }
-  
 
   const handleFileSectionClick = () => {
     fileInputRef.current?.click();
