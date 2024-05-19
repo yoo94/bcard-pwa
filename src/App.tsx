@@ -24,6 +24,7 @@ function reducer(state: BCardListObj[], action: any) {
     case "CREATE":
       alert('r3')
       nextState = [action.data, ...state];
+      alert('r4')
       break;
     case "UPDATE":
       nextState = state.map((item: BCardListObj) =>
@@ -39,6 +40,7 @@ function reducer(state: BCardListObj[], action: any) {
       return state;
   }
   localStorage.setItem("Bcard", JSON.stringify(nextState));
+  alert('r5')
   return nextState;
 }
 
@@ -94,7 +96,6 @@ function App() {
   }, []);
 
   const onCreate = (name: string, hpNum: string, company: string, email: string, image:string) => {
-    alert('r1')
     dispatch({
       type: "CREATE",
       data: {
@@ -106,7 +107,6 @@ function App() {
         image:image
       }
     });
-    alert('r2')
   };
   
   const onUpdate = (id: number, name: string, hpNum: string, company: string, email: string, image:string) => {
