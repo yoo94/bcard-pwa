@@ -26,19 +26,14 @@ const File: React.FC<FileProps> = ({ setImage }) => {
       fileRead.onload = function() {
         const result = fileRead.result;
         if (typeof result === 'string') {
-          alert('r4')
           setPreviewImg(result);
-          alert('r6')
           setImage((prevState) => ({
             ...prevState,
             image: result
           }));
-          alert('r7')
         }
       };
-      alert('r5')
       fileRead.readAsDataURL(fileArr[0]); // 파일을 data URL 형식으로 읽기
-
     }
   }
 

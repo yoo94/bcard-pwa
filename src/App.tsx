@@ -38,9 +38,7 @@ function reducer(state: BCardListObj[], action: any) {
     default:
       return state;
   }
-  alert('r2')
-  localStorage.setItem("Bcard", JSON.stringify(nextState));
-  alert('r3')
+  // localStorage.setItem("Bcard", JSON.stringify(nextState));
   return nextState;
 }
 
