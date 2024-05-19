@@ -27,8 +27,9 @@ const New = () => {
             input.email,
             input.image
         );
-        nav(-1);
+        alert('r1');
         nav('/',{replace:true})
+        alert('r2');
     }
     return (
         <div>
