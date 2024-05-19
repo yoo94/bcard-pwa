@@ -22,7 +22,6 @@ function reducer(state: BCardListObj[], action: any) {
     case "INIT": 
       return action.data;
     case "CREATE":
-      alert('r1')
       nextState = [action.data, ...state];
       break;
     case "UPDATE":
@@ -38,7 +37,7 @@ function reducer(state: BCardListObj[], action: any) {
     default:
       return state;
   }
-  // localStorage.setItem("Bcard", JSON.stringify(nextState));
+  localStorage.setItem("Bcard", JSON.stringify(nextState));
   return nextState;
 }
 
@@ -68,7 +67,7 @@ function App() {
   const idRef = useRef<number>(0); // 초기값 설정
 
   useEffect(() => {
-    const storedData = localStorage.getItem('Bcard');
+    const storedData = localStorage.getItem(JSON.parse('Bcard'));
     if (!storedData) {
       setIsLoading(false);
       return;
