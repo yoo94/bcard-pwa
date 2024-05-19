@@ -35,8 +35,6 @@ const File: React.FC<FileProps> = ({ setImage }) => {
           }));
         }
       };
-      
-      fileRead.readAsDataURL(fileArr[0]); // Read the file as data URL
     }
   }
   
@@ -50,7 +48,7 @@ const File: React.FC<FileProps> = ({ setImage }) => {
       <section className="file_section" onClick={handleFileSectionClick}>
         <img className="preview" alt='' src={previewImg} />
         <div>
-          <label htmlFor="file"></label> {/* Added id for file input */}
+          <label htmlFor="file"></label>
           <div className="hidden">
             <input id="file" ref={fileInputRef} type="file" multiple accept="image/*" onChange={uploadFile} />
           </div>

@@ -22,7 +22,6 @@ function reducer(state: BCardListObj[], action: any) {
     case "INIT": 
       return action.data;
     case "CREATE":
-      alert('r2')
       nextState = [action.data, ...state];
       break;
     case "UPDATE":
@@ -105,7 +104,6 @@ function App() {
         image:image
       }
     });
-    alert('r1')
   };
   
   const onUpdate = (id: number, name: string, hpNum: string, company: string, email: string, image:string) => {
