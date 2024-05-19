@@ -36,6 +36,7 @@ const File: React.FC<FileProps> = ({ setImage }) => {
     if (fileArr && fileArr.length > 0) {
       
       const reader = new FileReader();
+      reader.readAsDataURL(fileArr[0]); // Read the file as data URL
       reader.onloadend = () => {
         const base64String = reader.result?.toString().split(',')[1]; // Get base64 string
         if (base64String) {
@@ -44,15 +45,8 @@ const File: React.FC<FileProps> = ({ setImage }) => {
             image: base64String
           }));
           setPreviewImg(base64String);
-          setImage((prevState) => ({
-            ...prevState,
-            // image: URL.createObjectURL(fileArr[0])
-            image: base64String
-          }));
         }
       };
-
-      reader.readAsDataURL(fileArr[0]); // Read the file as data URL
     }
   }
 
