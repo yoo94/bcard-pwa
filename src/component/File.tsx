@@ -20,13 +20,13 @@ const File: React.FC<FileProps> = ({ setImage }) => {
       const response = await fetch("./images/1.gif");
       const blob = await response.blob();
       const reader = new FileReader();
+      reader.readAsDataURL(blob); // Read the file as data URL
       reader.onloadend = () => {
         const base64String = reader.result?.toString().split(',')[1]; // Get base64 string
         if (base64String) {
           setPreviewImg(base64String);
         }
       };
-      reader.readAsDataURL(blob); // Read the file as data URL
     };
     loadImage();
   }, []);
