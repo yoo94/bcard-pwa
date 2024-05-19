@@ -37,8 +37,11 @@ function reducer(state: BCardListObj[], action: any) {
     default:
       return state;
   }
+  
   localStorage.setItem("Bcardobj", JSON.stringify(nextState));
-  return nextState;
+  setTimeout(() => {
+    return nextState;
+  }, 3000);
 }
 
 // 기본 상태 정의
