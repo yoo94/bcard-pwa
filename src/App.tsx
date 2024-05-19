@@ -22,6 +22,7 @@ function reducer(state: BCardListObj[], action: any) {
     case "INIT": 
       return action.data;
     case "CREATE":
+      alert('r1')
       nextState = [action.data, ...state];
       break;
     case "UPDATE":
@@ -37,12 +38,10 @@ function reducer(state: BCardListObj[], action: any) {
     default:
       return state;
   }
-  
-  setTimeout(() => {
-    localStorage.setItem("Bcardobj", JSON.stringify(nextState));
-
-    return nextState;
-  }, 3000);
+  alert('r2')
+  localStorage.setItem("Bcardobj", JSON.stringify(nextState));
+  alert('r3')
+  return nextState;
 }
 
 // 기본 상태 정의
