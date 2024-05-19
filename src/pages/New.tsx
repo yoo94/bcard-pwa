@@ -16,6 +16,10 @@ const New = () => {
     const { onCreate } = useContext(BcardDispatchContext);
     const nav = useNavigate();
     const  onsubmit=(input:InputType)=>{
+        if(!input.name||!input.hpNum){
+            alert('이름과 번호는 필수 입니다.');
+            return;
+        }
         onCreate(
             input.name,
             input.hpNum,
