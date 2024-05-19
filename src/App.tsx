@@ -38,8 +38,9 @@ function reducer(state: BCardListObj[], action: any) {
       return state;
   }
   
-  localStorage.setItem("Bcardobj", JSON.stringify(nextState));
   setTimeout(() => {
+    localStorage.setItem("Bcardobj", JSON.stringify(nextState));
+
     return nextState;
   }, 3000);
 }
