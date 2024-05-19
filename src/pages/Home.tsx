@@ -4,6 +4,7 @@ import Footer from "../component/Footer";
 import { BcardStateContext } from "../App";
 import { useContext } from "react";
 export interface BCardListObj {
+    image: string | undefined;
     id: number,
     name: string,
     hpNum: string,

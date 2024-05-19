@@ -12,10 +12,11 @@ const BcardItem: React.FC<BCardListObj> = (item) => {
       </div>
       <div onClick={() => { nav(`/businesscard/${item.id}`) }}
         className="info_section">
-        <div className="name">{item.name}</div>
-        <div className="hpNum">{item.hpNum}</div>
-        <div className="company">{item.company}</div>
-        <div className="email">{item.email}</div>
+        <div className="image"><img src={item.image}/></div>
+        <div className="name">이름 : {item.name}</div>
+        <div className="hpNum">번호 : {item.hpNum}</div>
+        <div className="company">회사 : {item.company}</div>
+        <div className="email">이메일 : {item.email}</div>
       </div>
     </div>
   )

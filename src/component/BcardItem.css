@@ -1,6 +1,7 @@
 .BcardItem .info_section {
-  border-bottom: 1px solid black;
-  background-color: rgb(240, 240, 240);
+  border-bottom: 2px solid black;
+  background-color: rgb(255, 255, 255);
+  margin-bottom: 4vh;
 }
 
 .BcardItem .name {
@@ -20,4 +21,9 @@
 
 .BcardItem .email {
   font-size: 20px;
+}
+
+.BcardItem .info_section .image img{
+  width: 100%;
+  height: 17vh;
 }
