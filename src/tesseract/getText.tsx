@@ -21,9 +21,9 @@ const getTextOcr =(text:string)=>{
     const emailMatch = text.match(emailRegex);
     const email = emailMatch ? emailMatch[0] : '이메일 주소를 찾을 수 없음';
 
-    const phoneNumberRegex = /(\d{3})-(\d{3,4})-(\d{4})/;
+    const phoneNumberRegex = /(M\s*\d+|hp\s*\d+|HP\s*\d+|010-\d{4}-\d{4}|010\d{4}\d{4})/;
     const phoneNumberMatch = text.match(phoneNumberRegex);
-    const phoneNumber = phoneNumberMatch ? phoneNumberMatch[0] : '핸드폰 번호를 찾을 수 없음';
+    const phoneNumber = phoneNumberMatch ? phoneNumberMatch[0] : '휴대폰 번호를 찾을 수 없음';
 
     const companyRegex = /(\(주\))?\s*\b[A-Z][a-zA-Z0-9&' -]+\b/;
     const companyMatch = text.match(companyRegex);
