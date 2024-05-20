@@ -3,7 +3,6 @@ import { BcardDispatchContext } from "../App";
 import Editor from "../component/Editor";
 import Header from "../component/Header";
 import { useNavigate } from "react-router-dom";
-
 export interface InputType {
     name: string;
     hpNum: string;

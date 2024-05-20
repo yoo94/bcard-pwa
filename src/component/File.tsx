@@ -1,5 +1,6 @@
 import { useEffect, useRef, useState } from 'react';
 import newWorker from "../tesseract/createWorker"
+import getTextOcr from "../tesseract/getText";
 
 import "./File.css";
 
@@ -16,7 +17,7 @@ interface FileProps {
 const File: React.FC<FileProps> = ({ setImage }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewImg, setPreviewImg] = useState<string>('');
-  const [ocrData, setOcrData] = useState<string>(''); // OCR 결과를 저장할 상태 변수
+  // const [ocrData, setOcrData] = useState<string>(''); // OCR 결과를 저장할 상태 변수
 
   useEffect(() => {
     setPreviewImg("/images/1.gif");
@@ -36,7 +37,10 @@ const File: React.FC<FileProps> = ({ setImage }) => {
           }));
           const ocrData = await newWorker(result); // newWorker 함수 실행 결과를 기다림
           console.log(ocrData);
-          setOcrData(ocrData ?? ''); // OCR 결과를 상태 변수에 저장
+          setImage((prevState) => ({
+            ...prevState,
+            ...getTextOcr(ocrData ?? '')
+          }));
         }
       };
       fileRead.readAsDataURL(fileArr[0]); // 파일을 data URL 형식으로 읽기
@@ -59,12 +63,12 @@ const File: React.FC<FileProps> = ({ setImage }) => {
         </div>
       </section>
       {/* OCR 결과를 출력 */}
-      {ocrData && (
+      {/* {ocrData && (
         <div>
           <h2>OCR 결과:</h2>
           <p>{ocrData}</p>
         </div>
-      )}
+      )} */}
     </div>
   );
 }
