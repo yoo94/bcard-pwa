@@ -33,7 +33,12 @@ const New = () => {
     }
     return (
         <div>
-            <CircularProgressbar value={percentage} text={`${percentage}%`} />;
+            {percentage > 0 && percentage < 100 && (
+                <CircularProgressbar className="progressbar" value={percentage} text={`${percentage}%`} />
+            )}
+            {percentage === 0 && percentage < 100 && (
+                <CircularProgressbar className="progressbar" value={percentage} text={`${percentage}%`} />
+            )}
             <Header title="명함 등록" />
             <Editor onsubmit={onsubmit} setPercentage={setPercentage} />
         </div>

@@ -1,7 +1,7 @@
 import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import newWorker from "../tesseract/createWorker";
 import getTextOcr from "../tesseract/getText";
-import RemoveBg from '../filterOCR/RemoveBg';
+// import RemoveBg from '../filterOCR/RemoveBg';
 import convertToGrayscale from '../filterOCR/GreyScale';
 
 import "./File.css";
@@ -43,14 +43,14 @@ const File: React.FC<FileProps> = ({ setImage, setPercentage }) => {
               image: result
             }));
             setPercentage(11);
-            const bgRemoveResult = await RemoveBg(result,setPercentage);
+            // const bgRemoveResult = await RemoveBg(result,setPercentage);
             setPercentage(73);
-            const greyScaleResult = await convertToGrayscale(bgRemoveResult,setPercentage);
+            const greyScaleResult = await convertToGrayscale(result,setPercentage);
             setPercentage(93)
-            setPreviewImg(bgRemoveResult);
+            setPreviewImg(result);
             setImage((prevState) => ({
               ...prevState,
-              image: bgRemoveResult
+              image: result
             }));
             setPercentage(94)
             const ocrData = await newWorker(greyScaleResult);
