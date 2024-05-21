@@ -27,40 +27,30 @@ const File: React.FC<FileProps> = ({ setImage, setPercentage }) => {
 
   async function uploadFile(e: React.ChangeEvent<HTMLInputElement>) {
     if (setPercentage) {
-      setPercentage(0)
       const fileArr = e.target.files;
       if (fileArr && fileArr.length > 0) {
         const fileRead = new FileReader();
-        setPercentage(5)
         fileRead.onload = async function () {
           const result = fileRead.result;
           if (typeof result === 'string') {
-            setPercentage(9)
             setPreviewImg(result);
-            setPercentage(10);
             setImage((prevState) => ({
               ...prevState,
               image: result
             }));
-            setPercentage(11);
             // const bgRemoveResult = await RemoveBg(result,setPercentage);
-            setPercentage(73);
-            const greyScaleResult = await convertToGrayscale(result,setPercentage);
-            setPercentage(93)
+            const greyScaleResult = await convertToGrayscale(result);
             setPreviewImg(result);
             setImage((prevState) => ({
               ...prevState,
               image: result
             }));
-            setPercentage(94)
-            const ocrData = await newWorker(greyScaleResult);
-            setPercentage(98)
+            const ocrData = await newWorker(greyScaleResult, setPercentage);
             console.log(ocrData);
             setImage((prevState) => ({
               ...prevState,
               ...getTextOcr(ocrData ?? '')
             }));
-            setPercentage(100)
           }
         };
         fileRead.readAsDataURL(fileArr[0]);

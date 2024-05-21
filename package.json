@@ -17,7 +17,7 @@
     "react-circular-progressbar": "^2.1.0",
     "react-dom": "^18.2.0",
     "react-router-dom": "^6.23.1",
-    "tesseract.js": "^4.1.1"
+    "tesseract.js": "^4.1.4"
   },
   "devDependencies": {
     "@types/mongoose": "^5.11.97",
