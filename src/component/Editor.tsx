@@ -3,45 +3,46 @@ import Button from './Button';
 import './Editor.css'
 import File from './File'
 import { InputType } from '../pages/New';
-import { useEffect, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useState } from 'react';
 
 interface EditorProps {
   onsubmit: (input: InputType) => void;
   initData?: InputType;
+  setPercentage?: Dispatch<SetStateAction<number>>;
 }
 
-const Editor: React.FC<EditorProps>  = ({onsubmit,initData}) => {
+const Editor: React.FC<EditorProps> = ({ onsubmit, initData, setPercentage }) => {
   const nav = useNavigate();
-  const [input,setInput] = useState<InputType>({
+  const [input, setInput] = useState<InputType>({
     name: "",
-    hpNum:"",
+    hpNum: "",
     company: "",
     email: "",
-    image:""
+    image: ""
   });
-  
-  const onChangeInput =(e: React.ChangeEvent<HTMLInputElement>)=>{
+
+  const onChangeInput = (e: React.ChangeEvent<HTMLInputElement>) => {
     const name = e.target.name;
     const value = e.target.value;
     setInput({
-        ...input,
-        [name] :value
+      ...input,
+      [name]: value
     })
-    
-  }
-  const onclickSubmit = ()=>{
-    onsubmit(input);
-  } 
 
-  useEffect(()=>{
-    if(initData){
-        setInput(
-            {
-                ...initData,
-            }
-        ) 
+  }
+  const onclickSubmit = () => {
+    onsubmit(input);
+  }
+
+  useEffect(() => {
+    if (initData) {
+      setInput(
+        {
+          ...initData,
+        }
+      )
     }
-  },[initData])
+  }, [initData])
 
   return (
     <div className="Editor">
@@ -92,7 +93,7 @@ const Editor: React.FC<EditorProps>  = ({onsubmit,initData}) => {
           <span></span>
         </div>
       </section>
-      <File setImage = {setInput} />
+      <File setImage={setInput} setPercentage={setPercentage} />
       <footer className='button_section'>
         <Button text={'취소하기'} type='RED' location={'footer_harf'} onclick={() => { nav(-1) }} />
         <Button text={'저장하기'} type='GREEN' location={'footer_harf'} onclick={onclickSubmit} />

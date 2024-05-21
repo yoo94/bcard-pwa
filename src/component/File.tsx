@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from 'react';
+import { Dispatch, SetStateAction, useEffect, useRef, useState } from 'react';
 import newWorker from "../tesseract/createWorker"
 import getTextOcr from "../tesseract/getText";
 import RemoveBg from '../filterOCR/RemoveBg';
@@ -14,9 +14,10 @@ interface FileProps {
     email: string;
     image: string;
   }>>;
+  setPercentage?: Dispatch<SetStateAction<number>>;
 }
 
-const File: React.FC<FileProps> = ({ setImage }) => {
+const File: React.FC<FileProps> = ({ setImage, setPercentage }) => {
   const fileInputRef = useRef<HTMLInputElement>(null);
   const [previewImg, setPreviewImg] = useState<string>('');
   // const [ocrData, setOcrData] = useState<string>(''); // OCR 결과를 저장할 상태 변수
@@ -26,6 +27,7 @@ const File: React.FC<FileProps> = ({ setImage }) => {
   }, []);
 
   async function uploadFile(e: React.ChangeEvent<HTMLInputElement>) {
+    setPercentage(0);
     const fileArr = e.target.files;
     if (fileArr && fileArr.length > 0) {
       const fileRead = new FileReader();
