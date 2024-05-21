@@ -1,8 +1,10 @@
 import { useEffect, useRef, useState } from 'react';
 import newWorker from "../tesseract/createWorker"
 import getTextOcr from "../tesseract/getText";
+import RemoveBg from '../filterOCR/RemoveBg';
 
 import "./File.css";
+import convertToGrayscale from '../filterOCR/GreyScale';
 
 interface FileProps {
   setImage: React.Dispatch<React.SetStateAction<{
@@ -35,7 +37,14 @@ const File: React.FC<FileProps> = ({ setImage }) => {
             ...prevState,
             image: result
           }));
-          const ocrData = await newWorker(result); // newWorker 함수 실행 결과를 기다림
+          const bgRemoveResult = await RemoveBg(result);
+          const greyScaleResult = await convertToGrayscale(bgRemoveResult);
+          setPreviewImg(bgRemoveResult);
+          setImage((prevState) => ({
+            ...prevState,
+            image: bgRemoveResult
+          }));
+          const ocrData = await newWorker(greyScaleResult); // newWorker 함수 실행 결과를 기다림
           console.log(ocrData);
           setImage((prevState) => ({
             ...prevState,
