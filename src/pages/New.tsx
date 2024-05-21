@@ -1,4 +1,4 @@
-import { useContext, useEffect, useState } from "react";
+import { useContext, useState } from "react";
 import { BcardDispatchContext } from "../App";
 import Editor from "../component/Editor";
 import Header from "../component/Header";
@@ -15,7 +15,7 @@ export interface InputType {
 
 const New = () => {
     const { onCreate } = useContext(BcardDispatchContext);
-    const [percentage, setPercentage] = useState(0);
+    const [percentage, setPercentage] = useState<number>(0);
     const nav = useNavigate();
     const onsubmit = (input: InputType) => {
         if (!input.name || !input.hpNum) {
