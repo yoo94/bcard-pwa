@@ -13,13 +13,13 @@ export interface BCardListObj {
   hpNum: string,
   company: string,
   email: string,
-  image:string
+  image: string
 }
 
 function reducer(state: BCardListObj[], action: any) {
   let nextState;
-  switch(action.type) {
-    case "INIT": 
+  switch (action.type) {
+    case "INIT":
       return action.data;
     case "CREATE":
       nextState = [action.data, ...state];
@@ -46,16 +46,16 @@ const defaultState: BCardListObj[] = [];
 
 // Dispatch 함수 타입 정의
 interface DispatchContextType {
-  onCreate: (name: string, hpNum: string, company: string, email: string,image:string) => void;
-  onUpdate: (id: number, name: string, hpNum: string, company: string, email: string,image:string) => void;
+  onCreate: (name: string, hpNum: string, company: string, email: string, image: string) => void;
+  onUpdate: (id: number, name: string, hpNum: string, company: string, email: string, image: string) => void;
   onDelete: (id: number) => void;
 }
 
 // 기본 Dispatch 함수 정의
 const defaultDispatch: DispatchContextType = {
-  onCreate: () => {},
-  onUpdate: () => {},
-  onDelete: () => {}
+  onCreate: () => { },
+  onUpdate: () => { },
+  onDelete: () => { }
 };
 
 export const BcardStateContext = createContext(defaultState);
@@ -92,21 +92,29 @@ function App() {
     setIsLoading(false);
   }, []);
 
-  const onCreate = (name: string, hpNum: string, company: string, email: string, image:string) => {
-    dispatch({
-      type: "CREATE",
-      data: {
+  const onCreate = async (name: string, hpNum: string, company: string, email: string, image: string) => {
+    const response = await fetch('http://localhost:5173/insertData', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
         id: idRef.current++,
-        name: name,
-        hpNum: hpNum,
-        company: company,
-        email: email,
-        image:image
-      }
+        name,
+        hpNum,
+        company,
+        email,
+        image,
+      }),
     });
+
+    if (!response.ok) {
+      throw new Error('Failed to insert data');
+    }
+
   };
-  
-  const onUpdate = (id: number, name: string, hpNum: string, company: string, email: string, image:string) => {
+
+  const onUpdate = (id: number, name: string, hpNum: string, company: string, email: string, image: string) => {
     dispatch({
       type: "UPDATE",
       data: {
@@ -119,7 +127,7 @@ function App() {
       }
     });
   };
-  
+
   const onDelete = (id: number) => {
     dispatch({
       type: "DELETE",

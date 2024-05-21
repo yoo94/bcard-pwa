@@ -5,6 +5,7 @@ import Header from "../component/Header";
 import { useNavigate } from "react-router-dom";
 import { CircularProgressbar } from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+
 export interface InputType {
     name: string;
     hpNum: string;
