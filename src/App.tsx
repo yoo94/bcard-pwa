@@ -93,13 +93,14 @@ function App() {
   }, []);
 
   const onCreate = async (name: string, hpNum: string, company: string, email: string, image: string) => {
-    const response = await fetch('http://localhost:5173/insertData', {
+    const id= idRef.current++
+    const response = await fetch('http://localhost:3000/insertData', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({
-        id: idRef.current++,
+        id,
         name,
         hpNum,
         company,
