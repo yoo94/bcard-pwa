@@ -23,7 +23,7 @@
           console.log("Service worker registration succeeded:", registration);
         })
         .catch((err) => {
-          console.log("Service worker registration failed:", error);
+          console.log("Service worker registration failed:", err);
         });
     } else {
       console.log("Service workers are not supported.");
