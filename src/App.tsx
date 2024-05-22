@@ -1,4 +1,4 @@
-import './App.css'
+import './App.css';
 import { Route, Routes } from 'react-router-dom';
 import Home from './pages/Home';
 import New from './pages/New';
@@ -6,30 +6,36 @@ import Edit from './pages/Edit';
 import BusinessCard from './pages/BusinessCard';
 import NotFound from './pages/NotFound';
 import { createContext, useEffect, useReducer, useRef, useState } from 'react';
+import callApi from './controller/callApi';
 
 export interface BCardListObj {
-  id: number,
-  name: string,
-  hpNum: string,
-  company: string,
-  email: string,
-  image: string
+  id: number;
+  name: string;
+  hpNum: string;
+  company: string;
+  email: string;
+  image: string;
+}
+
+export interface UserInfo {
+  u_id: string;
+  u_email: string;
 }
 
 function reducer(state: BCardListObj[], action: any) {
   let nextState;
   switch (action.type) {
-    case "INIT":
+    case 'INIT':
       return action.data;
-    case "CREATE":
+    case 'CREATE':
       nextState = [action.data, ...state];
       break;
-    case "UPDATE":
+    case 'UPDATE':
       nextState = state.map((item: BCardListObj) =>
         String(item.id) === String(action.data.id) ? action.data : item
       );
       break;
-    case "DELETE":
+    case 'DELETE':
       nextState = state.filter((item: BCardListObj) =>
         Number(item.id) !== Number(action.id)
       );
@@ -37,7 +43,7 @@ function reducer(state: BCardListObj[], action: any) {
     default:
       return state;
   }
-  localStorage.setItem("Bcardobj", JSON.stringify(nextState));
+  localStorage.setItem('Bcardobj', JSON.stringify(nextState));
   return nextState;
 }
 
@@ -46,78 +52,96 @@ const defaultState: BCardListObj[] = [];
 
 // Dispatch 함수 타입 정의
 interface DispatchContextType {
-  onCreate: (name: string, hpNum: string, company: string, email: string, image: string) => void;
-  onUpdate: (id: number, name: string, hpNum: string, company: string, email: string, image: string) => void;
+  onCreate: (
+    name: string,
+    hpNum: string,
+    company: string,
+    email: string,
+    image: string
+  ) => void;
+  onUpdate: (
+    id: number,
+    name: string,
+    hpNum: string,
+    company: string,
+    email: string,
+    image: string
+  ) => void;
   onDelete: (id: number) => void;
+  triggerReload: () => void;
 }
 
 // 기본 Dispatch 함수 정의
 const defaultDispatch: DispatchContextType = {
   onCreate: () => { },
   onUpdate: () => { },
-  onDelete: () => { }
+  onDelete: () => { },
+  triggerReload: () => { },
 };
 
 export const BcardStateContext = createContext(defaultState);
 export const BcardDispatchContext = createContext(defaultDispatch);
 
 function App() {
+  localStorage.setItem('userInfo', 'jaeseok9405@gmail.com');
+
+
   const [isLoading, setIsLoading] = useState<boolean>(true);
+  const [reload, setReload] = useState(false);
   const [data, dispatch] = useReducer(reducer, []);
   const idRef = useRef<number>(0); // 초기값 설정
 
   useEffect(() => {
-    const storedData = localStorage.getItem('Bcardobj');
-    if (!storedData) {
+    async function fetchData() {
+      const storedData = await callApi('selectData', { auth: localStorage.getItem('userInfo') });
+      if (!storedData) {
+        setIsLoading(false);
+        return;
+      }
+      const parseData = storedData;
+      let maxId = 0;
+
+      if (!Array.isArray(parseData)) {
+        setIsLoading(false);
+        return;
+      }
+      parseData.forEach(itm => {
+        if (Number(itm.id) > maxId) maxId = Number(itm.id);
+      });
+
+      idRef.current = maxId + 1;
+
+      dispatch({
+        type: 'INIT',
+        data: parseData
+      });
       setIsLoading(false);
-      return;
     }
-    const parseData = JSON.parse(storedData);
-    let maxId = 0;
+    fetchData();
 
-    if (!Array.isArray(parseData)) {
-      setIsLoading(false);
-      return;
-    }
-    parseData.forEach(itm => {
-      if (Number(itm.id) > maxId) maxId = Number(itm.id);
-    });
-
-    idRef.current = maxId + 1;
-
-    dispatch({
-      type: 'INIT',
-      data: parseData
-    });
-    setIsLoading(false);
-  }, []);
+  }, [reload]);
 
   const onCreate = async (name: string, hpNum: string, company: string, email: string, image: string) => {
-    const id= idRef.current++
-    const response = await fetch('http://localhost:3000/insertData', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        id,
+    try {
+      const auth = localStorage.getItem('userInfo');
+      const data = {
+        auth,
         name,
         hpNum,
         company,
         email,
         image,
-      }),
-    });
-
-    if (!response.ok) {
-      throw new Error('Failed to insert data');
+      };
+      const result = await callApi('onCreate', data);
+      return result.insertedId;
+    } catch (e: any) {
+      console.log(e);
     }
-
   };
 
   const onUpdate = (id: number, name: string, hpNum: string, company: string, email: string, image: string) => {
     dispatch({
-      type: "UPDATE",
+      type: 'UPDATE',
       data: {
         id,
         name,
@@ -131,7 +155,7 @@ function App() {
 
   const onDelete = (id: number) => {
     dispatch({
-      type: "DELETE",
+      type: 'DELETE',
       id
     });
   };
@@ -139,11 +163,11 @@ function App() {
   if (isLoading) {
     return <div>로딩중!</div>;
   }
-
+  const triggerReload = () => setReload(!reload);
   return (
     <>
       <BcardStateContext.Provider value={data}>
-        <BcardDispatchContext.Provider value={{ onCreate, onUpdate, onDelete }}>
+        <BcardDispatchContext.Provider value={{ onCreate, onUpdate, onDelete, triggerReload }}>
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/new" element={<New />} />

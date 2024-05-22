@@ -15,7 +15,7 @@ export interface InputType {
 }
 
 const New = () => {
-    const { onCreate } = useContext(BcardDispatchContext);
+    const { onCreate, triggerReload } = useContext(BcardDispatchContext);
     const [percentage, setPercentage] = useState(0);
     const nav = useNavigate();
     const onsubmit = (input: InputType) => {
@@ -30,6 +30,7 @@ const New = () => {
             input.email,
             input.image
         );
+        triggerReload()
         nav('/');
     };
 
