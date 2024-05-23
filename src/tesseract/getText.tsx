@@ -1,5 +1,5 @@
 export interface BCardListObj {
-    id: number,
+    _id: number,
     name: string,
     hpNum: string,
     company: string,

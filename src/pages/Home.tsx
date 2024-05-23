@@ -5,7 +5,7 @@ import { BcardStateContext } from "../App";
 import { useContext } from "react";
 export interface BCardListObj {
     image: string | undefined;
-    id: number,
+    _id: number,
     name: string,
     hpNum: string,
     company: string,

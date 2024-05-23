@@ -9,7 +9,7 @@ import { createContext, useEffect, useReducer, useRef, useState } from 'react';
 import callApi from './controller/callApi';
 
 export interface BCardListObj {
-  id: number;
+  _id: string;
   name: string;
   hpNum: string;
   company: string;
@@ -32,18 +32,17 @@ function reducer(state: BCardListObj[], action: any) {
       break;
     case 'UPDATE':
       nextState = state.map((item: BCardListObj) =>
-        String(item.id) === String(action.data.id) ? action.data : item
+        String(item._id) === String(action.data._id) ? action.data : item
       );
       break;
     case 'DELETE':
       nextState = state.filter((item: BCardListObj) =>
-        Number(item.id) !== Number(action.id)
+        item._id !== action._id
       );
       break;
     default:
       return state;
   }
-  localStorage.setItem('Bcardobj', JSON.stringify(nextState));
   return nextState;
 }
 
@@ -60,14 +59,13 @@ interface DispatchContextType {
     image: string
   ) => void;
   onUpdate: (
-    id: number,
     name: string,
     hpNum: string,
     company: string,
     email: string,
     image: string
   ) => void;
-  onDelete: (id: number) => void;
+  onDelete: (_id: number) => void;
   triggerReload: () => void;
 }
 
@@ -106,7 +104,7 @@ function App() {
         return;
       }
       parseData.forEach(itm => {
-        if (Number(itm.id) > maxId) maxId = Number(itm.id);
+        if (Number(itm._id) > maxId) maxId = Number(itm._id);
       });
 
       idRef.current = maxId + 1;
@@ -139,11 +137,11 @@ function App() {
     }
   };
 
-  const onUpdate = (id: number, name: string, hpNum: string, company: string, email: string, image: string) => {
+  const onUpdate = (_id: string, name: string, hpNum: string, company: string, email: string, image: string) => {
     dispatch({
       type: 'UPDATE',
       data: {
-        id,
+        _id,
         name,
         hpNum,
         company,
@@ -153,10 +151,10 @@ function App() {
     });
   };
 
-  const onDelete = (id: number) => {
+  const onDelete = (_id: string) => {
     dispatch({
       type: 'DELETE',
-      id
+      _id
     });
   };
 
@@ -171,8 +169,8 @@ function App() {
           <Routes>
             <Route path="/" element={<Home />} />
             <Route path="/new" element={<New />} />
-            <Route path="/businesscard/:id" element={<BusinessCard />} />
-            <Route path="/edit/:id" element={<Edit />} />
+            <Route path="/businesscard/:_id" element={<BusinessCard />} />
+            <Route path="/edit/:_id" element={<Edit />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
         </BcardDispatchContext.Provider>

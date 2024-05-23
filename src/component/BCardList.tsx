@@ -35,7 +35,7 @@ const BCardList: React.FC<BCardListProps> = ({ data }) => {
                 />
                 <div className="list_wrapper">
                     {filteredData.map((item) => {
-                        return <BcardItem key={item.id} {...item} />
+                        return <BcardItem key={item._id} {...item} />
                     })}
                 </div>
             </div>

@@ -10,7 +10,7 @@ const BcardItem: React.FC<BCardListObj> = (item) => {
       <div
         onClick={() => { }}>
       </div>
-      <div onClick={() => { nav(`/businesscard/${item.id}`) }}
+      <div onClick={() => { nav(`/businesscard/${item._id}`) }}
         className="info_section">
         <img className="image" src={item.image || "./images/1.gif"} alt="business card" />
         <div className="name">이름 : {item.name}</div>

@@ -1,5 +1,4 @@
 
-const auth = localStorage.getItem('userInfo')
 
 const callApi = async (apiName: string, data: object, method?: string) => {
   try {
@@ -8,7 +7,7 @@ const callApi = async (apiName: string, data: object, method?: string) => {
       headers: {
         'Content-Type': 'application/json',
       },
-      body: JSON.stringify({ ...data, auth }),
+      body: JSON.stringify({ ...data }),
     });
 
     if (!response.ok) {
