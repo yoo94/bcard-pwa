@@ -65,7 +65,7 @@ interface DispatchContextType {
     email: string,
     image: string
   ) => void;
-  onDelete: (_id: number) => void;
+  onDelete: (_id: string) => void;
   triggerReload: () => void;
 }
 
@@ -137,11 +137,10 @@ function App() {
     }
   };
 
-  const onUpdate = (_id: string, name: string, hpNum: string, company: string, email: string, image: string) => {
+  const onUpdate = (name: string, hpNum: string, company: string, email: string, image: string) => {
     dispatch({
       type: 'UPDATE',
       data: {
-        _id,
         name,
         hpNum,
         company,

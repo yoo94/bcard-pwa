@@ -29,21 +29,19 @@ self.addEventListener("fetch", (e) => {
       if (response) {
         return response;
       }
-      var fetchRequest = e.request.clone();
-
-      return fetch(fetchRequest).then(response => {
+      return fetch(e.request).then(response => {
         if (!response || response.status !== 200 || response.type !== 'basic') {
           return response;
         }
-
-        var responseToCache = response.clone();
-
+        const responseToCache = response.clone();
         caches.open('my-cache-name').then(cache => {
           cache.put(e.request, responseToCache);
         });
-
         return response;
       });
+    }).catch(err => {
+      console.error('Fetch error:', err);
+      return new Response('Network error occurred', { status: 500 });
     })
   );
 });

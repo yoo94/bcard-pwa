@@ -9,7 +9,7 @@ const useBcard = (id: string | undefined) => {
 
     useEffect(() => {
         if (id) {
-            const findBcardItem = data.find((item) => String(item.id) === id);
+            const findBcardItem = data.find((item) => String(item._id) === id);
             if (!findBcardItem) {
                 window.alert("존재하지 않는 등록");
                 nav('/', { replace: true });
