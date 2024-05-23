@@ -2,7 +2,7 @@
 
 const callApi = async (apiName: string, data: object, method?: string) => {
   try {
-    const response = await fetch(`http://localhost:3000/${apiName}`, {
+    const response = await fetch(`https://bcard-server.vercel.app/${apiName}`, {
       method: method ? method : 'POST',
       headers: {
         'Content-Type': 'application/json',
