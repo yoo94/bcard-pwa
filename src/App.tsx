@@ -151,10 +151,8 @@ function App() {
   };
 
   const onDelete = (_id: string) => {
-    dispatch({
-      type: 'DELETE',
-      _id
-    });
+    callApi('onDelete', { auth: localStorage.getItem('userInfo'), _id: _id });
+
   };
 
   if (isLoading) {

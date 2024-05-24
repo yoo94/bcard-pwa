@@ -1,6 +1,6 @@
 const callApi = async (apiName: string, data: object, method?: string) => {
   try {
-    const response = await fetch(`${window.location.origin}/server/${apiName}`, {
+    const response = await fetch(`http://localhost:3000/${apiName}`, {
       method: method ? method : 'POST',
       headers: {
         'Content-Type': 'application/json',

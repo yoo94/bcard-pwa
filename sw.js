@@ -1,7 +1,20 @@
+const CACHE_NAME = 'mybcard';
+const urlsToCache = [
+  '/',
+  '/index.html',
+  '/src/App.tsx',
+  '/src/index.css',
+];
+
 // install event
 self.addEventListener("install", (e) => {
-  console.log("[Service Worker] Installed", e);
-  // 여기에서 캐시할 리소스를 지정할 수 있습니다.
+  e.waitUntil(
+    caches.open(CACHE_NAME)
+      .then(function (cache) {
+        console.log('Opened cache');
+        return cache.addAll(urlsToCache);
+      })
+  );
 });
 
 // activate event
@@ -11,7 +24,7 @@ self.addEventListener("activate", (e) => {
     caches.keys().then(cacheNames => {
       return Promise.all(
         cacheNames.map(cache => {
-          if (cache !== 'my-cache-name') {
+          if (cache !== CACHE_NAME) {
             console.log('[Service Worker] Deleting old cache:', cache);
             return caches.delete(cache);
           }
@@ -34,7 +47,7 @@ self.addEventListener("fetch", (e) => {
           return response;
         }
         const responseToCache = response.clone();
-        caches.open('my-cache-name').then(cache => {
+        caches.open(CACHE_NAME).then(cache => {
           cache.put(e.request, responseToCache);
         });
         return response;
