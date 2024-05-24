@@ -14,7 +14,7 @@ export interface BCardListObj {
   hpNum: string;
   company: string;
   email: string;
-  image: string;
+  // image: string;
 }
 
 export interface UserInfo {
@@ -56,14 +56,14 @@ interface DispatchContextType {
     hpNum: string,
     company: string,
     email: string,
-    image: string
+    // image: string
   ) => void;
   onUpdate: (
     name: string,
     hpNum: string,
     company: string,
     email: string,
-    image: string
+    // image: string
   ) => void;
   onDelete: (_id: string) => void;
   triggerReload: () => void;
@@ -119,7 +119,9 @@ function App() {
 
   }, [reload]);
 
-  const onCreate = async (name: string, hpNum: string, company: string, email: string, image: string) => {
+  const onCreate = async (name: string, hpNum: string, company: string, email: string
+    // , image: string
+  ) => {
     try {
       const auth = localStorage.getItem('userInfo');
       const data = {
@@ -128,7 +130,7 @@ function App() {
         hpNum,
         company,
         email,
-        image,
+        // image,
       };
       const result = await callApi('onCreate', data);
       return result.insertedId;
@@ -137,7 +139,9 @@ function App() {
     }
   };
 
-  const onUpdate = (name: string, hpNum: string, company: string, email: string, image: string) => {
+  const onUpdate = (name: string, hpNum: string, company: string, email: string,
+    //  image: string
+  ) => {
     dispatch({
       type: 'UPDATE',
       data: {
@@ -145,7 +149,7 @@ function App() {
         hpNum,
         company,
         email,
-        image
+        // image
       }
     });
   };

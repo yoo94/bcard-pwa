@@ -28,7 +28,7 @@ const New = () => {
             input.hpNum,
             input.company,
             input.email,
-            input.image
+            // input.image
         );
         triggerReload()
         nav('/');
