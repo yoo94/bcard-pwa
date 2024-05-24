@@ -1,4 +1,4 @@
-const CACHE_NAME = 'mybcard';
+const CACHE_NAME = 'mybcardCache';
 const urlsToCache = [
   '/',
   '/index.html',
